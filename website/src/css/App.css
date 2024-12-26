@@ -3,14 +3,15 @@
 * {
   cursor: none;
   pointer-events: none;
+  margin:0;
+  padding: 0;
 }
 
-
-
 :root {
-  --background: #F4F2ED;
+  --primary: #F4F2ED;
+  --secondary: #FF0000;
+  --tertiary: #000000;
   --red: #FF0000;
-  --black: #111214;
 }
 
 .cursor {
@@ -26,7 +27,7 @@
 }
 
 h2 {
-  color: var(--black);
+  color: var(--tertiary);
   font-weight: 200;
   margin: 0;
   padding: 0;
@@ -34,23 +35,32 @@ h2 {
 }
 
 p {
-  color: var(--black);
+  color: var(--tertiary);
   font-weight: 200;
   pointer-events: auto;
 }
  
-a, li {
+a {
   pointer-events: auto;
+  text-decoration: none !important;
+  color: var(--tertiary);
 }
 
 
-.landing {
+.scroll {
+  display: flex;
+}
+
+
+/** LANDING CSS */
+
+#landing {
   display: grid;
   grid-template-rows: 240px 40px 420px 120px 50px;
   font-family: 'Literata';
-  background-color: var(--background);
+  background-color: var(--primary);
   padding:21px;
-  height:95.6vh;
+  height:95.4vh;
   width: 97.8%;
   gap: 0;
 }
@@ -84,7 +94,7 @@ span {
 
 .navbar li {
   list-style-type: none;
-  color:var(--red);
+  color:var(--secondary);
   padding-top: 30px;
   font-weight: 100;
 }
@@ -99,7 +109,7 @@ h1 {
   font-weight: 700;
   position: absolute;
   font-size: 500px;
-  color:var(--red);
+  color:var(--secondary);
   padding: 0;
   margin:0;
   line-height: 330px;
@@ -113,13 +123,13 @@ h1 {
 }
 
 #name-outline {
-  color: var(--background);
+  color: var(--primary);
   position: absolute;
   text-shadow:
-    -1px -1px 0 var(--red),  /* Top-left shadow */
-    1px -1px 0 var(--red),   /* Top-right shadow */
-    -1px 1px 0 var(--red),   /* Bottom-left shadow */
-    1px 1px 0 var(--red);    /* Bottom-right shadow */
+    -1px -1px 0 var(--secondary),  /* Top-left shadow */
+    1px -1px 0 var(--secondary),   /* Top-right shadow */
+    -1px 1px 0 var(--secondary),   /* Bottom-left shadow */
+    1px 1px 0 var(--secondary);    /* Bottom-right shadow */
     z-index: 0;
 }
 
@@ -139,15 +149,22 @@ h1 {
   padding-left: 40px;
 }
 
-
 .info {
   text-align: center;
-  text-decoration: underline;
 }
 
-.scroll {
-  display: flex;
+/** About */
+.card {
+  display: grid;
+  grid-template-rows: 240px 40px 420px 120px 50px;
+  font-family: 'Literata';
+  background-color: var(--tertiary);
+  padding:21px;
+  height:95.4vh;
+  width: 97.8%;
+  gap: 0;
 }
+
 
 
 

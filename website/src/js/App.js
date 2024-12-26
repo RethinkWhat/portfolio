@@ -37,7 +37,7 @@ function Landing() {
       width: 150,
       x: mousePosition.x - 75,
       y: mousePosition.y - 75,
-      backgroundColor: "red",
+      backgroundColor: "white",
       mixBlendMode: "difference"
 
     }
@@ -51,12 +51,12 @@ function Landing() {
   };
 
   return (
-    <main className="landing">  
+    <main id="landing">  
     <div id="head">
         <ul className="navbar">
           <li> <div className="currPageSquare"> </div> </li>
-          <li onMouseEnter={textEnter} onMouseLeave= {textLeave}> About me </li>
-          <li onMouseEnter={textEnter} onMouseLeave= {textLeave}>Projects</li>
+          <li> <a href="#about">About me </a></li>
+          <li> <a href="#projects">Projects</a></li>
         </ul>
     </div>
     <div id="welcome-msg-div" >
@@ -79,7 +79,7 @@ function Landing() {
       </div>
 
       <div className="info">
-        <a onMouseEnter={textEnter} onMouseLeave= {textLeave} href="https://github.com/RethinkWhat"><br/>Visit my Github?</a>
+        <br/><a href="https://github.com/RethinkWhat">Visit my Github?</a>
       </div>
 
       <div className="scroll">
@@ -96,4 +96,32 @@ function Landing() {
   );
 }
 
-export default Landing;
+function About() {
+  return (
+    <main id="about" className="card">
+        <span>About</span>
+    </main>
+  )
+}
+
+function Projects() {
+  return (
+    <main id = "projects" className="card">
+      <span>Projects</span>
+    </main>
+  )
+}
+
+function Page() {
+  return (
+    <>
+      < Landing />
+      < About />
+      <Projects />
+    </>
+  )
+
+}
+
+
+export default Page;
