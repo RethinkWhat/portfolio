@@ -27,6 +27,16 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+.selected {
+  color: var(--secondary);
+}
+  */
+
 h1, h2, h3, h4, li {
   background-color: transparent;
   padding: 0px;
@@ -109,6 +119,7 @@ div {
   flex-wrap: nowrap;
   justify-content: space-between;
   top:0;
+  z-index: 10000;
   position: sticky;
   background-color: transparent;
   height: 90px;
@@ -124,18 +135,27 @@ div {
 
 .nav-option {
   margin-right:107px;
+/* color:var(--tertiary) */
+}
+
+#tank {
   color:var(--tertiary)
 }
 
 #contact {
-  padding: 6px 20px;
-  border: 2px solid var(--secondary);
-  height: 30px;
-  border-radius: 40%;
-  text-align: center;
   background-color: transparent;
-  
-  margin-left: 480px;
+  color: #FFF5D1; /* Match the text color */
+  padding: 4px 20px;
+  padding-bottom: 14px;
+  padding-right: 22px;
+  border: 2px solid var(--secondary); /* Increase the border width */
+  border-radius: 30px; /* Keep the rounded effect */
+  font-weight: bold;
+  font-size: 16px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 490px;
 }
 
 #contact-a {
@@ -161,6 +181,7 @@ li {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+  background-color: var(--primary);
 
 }
 
@@ -266,8 +287,10 @@ li {
 #projects {
   display: flex;
   align-items: center;
-
+  overflow: hidden;
 }
+
+
 
 #projects-left {
   width: 1050px;
@@ -325,7 +348,6 @@ li {
   width: 601px;
   height: 346px;
   margin-left: 50px;
-  background-color: var(--secondary);
 }
 
 #project-img-container-2 {
@@ -333,14 +355,12 @@ li {
   height: 346px;
   margin-top: 380px;
   margin-left: -481px;
-  background-color: var(--secondary);
 }
 
 #project-img-container-3 {
   width: 601px;
   height: 346px;
   margin-left: 250px;
-  background-color: var(--secondary);
 }
 
 .inner-img {
@@ -367,7 +387,6 @@ li {
   padding-left: 40px;
   padding-right: 40px;
   position: sticky;
-  z-index: 1;
   width: 300px;
   margin-left: 150px;
 }
@@ -381,7 +400,6 @@ li {
   padding-top:15px;
   padding-right: 0px;
   position: sticky;
-  z-index: 1;
   margin-top: 50px;
   margin-left: 150px;
 }

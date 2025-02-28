@@ -38,8 +38,21 @@ import BOOTHLINK_ORG_SELECTOR from '../assets/images/boothlink/org-selector.png'
 import BOOTHLINK_HOME from '../assets/images/boothlink/login.png';
 import BOOTHLINK_LOGIN from '../assets/images/boothlink/home.png';
 
-/* Others */
+/* BOGGLE */
+import BOGGLE_SETTINGS from '../assets/images/boggle/settings.png';
+import BOGGLE_HOME from '../assets/images/boggle/home.png';
+import BOGGLE_QUEUE from '../assets/images/boggle/queue.png';
 
+/* TURO */
+import TURO_INFO from '../assets/images/turo/applicant-info.png';
+import TURO_APPLICANT from '../assets/images/turo/applicant.png'
+import TURO_SIGNUP from '../assets/images/turo/signup.png'
+
+/* IBALL */
+import IBALL_HOME from '../assets/images/i-ball/home.png';
+import IBALL_LOGIN from '../assets/images/i-ball/login.png'
+import IBALL_MERCH from '../assets/images/i-ball/merch.png'
+/* Others */
 import { motion, AnimatePresence, animate } from "framer-motion";
 import React, { useState, useEffect } from 'react';
 import { useInView } from "react-intersection-observer";
@@ -47,7 +60,8 @@ import { useInView } from "react-intersection-observer";
 const navVariants = {
   hover : {
     scale:1.2, 
-    color:'#2E2111'
+    color:'#2E2111',
+    zIndex:500
   }
 }
 
@@ -61,28 +75,60 @@ function Head() {
 }
 
 function NavBar() {
+  const [navbarColor, setNavbarColor] = useState("#333"); // Default color
+  const [textColor, setTextColor] = useState("#fff");
+
+  useEffect(() => {
+      const sections = document.querySelectorAll(".card");
+      console.log(sections)
+
+      const observer = new IntersectionObserver(
+          (entries) => {
+              entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                      const bgColor = window.getComputedStyle(entry.target).backgroundColor;
+                      console.log("BG", bgColor)
+                      
+                      if (bgColor === "rgb(228, 120, 57)") { // Example: Orange background
+                          setTextColor("#FEF2C4"); // White text
+                      } else {
+                        setTextColor("#2E2111"); // Dark text
+
+                      }
+                  }
+              });
+          },
+          { threshold: 0.8 } // Trigger when 50% of a section is visible
+      );
+
+      sections.forEach((section) => observer.observe(section));
+
+      return () => observer.disconnect();
+  }, []);
+
+
   return (
     <nav id="nav">
-          <h4>tank</h4>
-            <ul id="nav-main">
+          <h4 id="tank" style={{  color: textColor }}>tank</h4>
+            <motion.ul id="nav-main">
               <motion.li className="nav-option"
                 variants={navVariants}
                 whileHover="hover"
-                  > <a href ="#home" className='selected'>Home </a>
+                  > <a href ="#home" className='selected' style={{  color: textColor }} >Home </a>
               </motion.li>
               <motion.li className="nav-option"
                 variants={navVariants}
                 whileHover="hover"
-                  > <a href="#about" >About</a>
+                  > <a href="#about" style={{  color: textColor }}>About</a>
               </motion.li>
               <motion.li className="nav-option"
                 variants={navVariants}
                 whileHover="hover"
-                  > <a href="#projects">Projects</a>
+                  > <a href="#projects" style={{  color: textColor }}>Projects</a>
               </motion.li>
-            </ul>
-            <div id = "contact">
-                <li> <a id="contact-a" href="#contactCard">Contact </a>
+            </motion.ul>
+            <div id = "contact" style={{  border: `2px solid ${textColor}` }}>
+                <li> <a id="contact-a" href="#contactCard" style={{  color: textColor }}>Contact </a>
                 </li>
               </div>
     </nav>
@@ -94,7 +140,7 @@ const miniCardVariants = {
   init : {
     rotateZ:-30, 
     scale:.25,
-    y:'-100vw'
+    y:'-100vw',
   },
   animate : {
     rotateZ: 2, 
@@ -398,7 +444,8 @@ function Projects() {
         animate={inView ? "animate" : "animate2"}
       >
         <a href = "#turo">
-          <motion.div className="projects-bg-div-light" animate={{rotateZ: 5, x:0}} initial={{rotateZ: -20, x:-250}} whileHover={{rotateZ:0, scale:1.5, zIndex:1000}} style={{ zIndex: 1 }}>
+          <motion.div className="projects-bg-div-light" 
+          animate={{rotateZ: 5, x:0}} initial={{rotateZ: -20, x:-250}} whileHover={{rotateZ:0, scale:1.5, zIndex:1000}} style={{ zIndex: 1 }}>
             <h5> turo</h5>
           </motion.div>
         </a>
@@ -423,7 +470,29 @@ function Projects() {
   )
 }
 
+
+const projectVariants = {
+animate : {
+    x:'0vw',
+    transition : {
+      type: 'tween',
+      mass:2.5, 
+      damping: 200,
+      stiffness: 15,
+      duration:.5
+      /*when: */
+    }
+},
+animate2 : {
+    x:'-20vw'
+}
+}
+
 function Project({ project, desc, img1, img2, img3, id} ) {
+  const { ref, inView } = useInView({
+    threshold: 0.01, 
+  })
+
   return (
     <div id={id} className='card'>
       <div id="project-left">
@@ -431,25 +500,25 @@ function Project({ project, desc, img1, img2, img3, id} ) {
           <img id = "project-arrow" src={ARROW} alt="back"></img>
         </a>
 
-        <motion.div id="project-img-container-1" animate={{rotateZ: 2, x:0}}>
-          <img className="inner-img" src={img1}></img>
+        <motion.div id="project-img-container-1" animate={{rotateZ: 2, x:0}} whileHover={{rotateZ:0, scale:1.2, zIndex:1000}} >
+          <motion.img className="inner-img" src={img1} ref={ref} variants={projectVariants} initial='init' animate={inView ? "animate" : "animate2"} ></motion.img>
         </motion.div>
 
-        <motion.div id="project-img-container-2" animate={{rotateZ: -2, x:0}}>
-          <img className="inner-img" src={img2}></img>
+        <motion.div id="project-img-container-2" animate={{rotateZ: -2, x:0}} whileHover={{rotateZ:0, scale:1.2, zIndex:1000}}>
+        <motion.img className="inner-img" src={img2} ref={ref} variants={projectVariants} initial='init' animate={inView ? "animate" : "animate2"} ></motion.img>
         </motion.div>
 
       </div>
       <div id="project-right">
-      <motion.div id="project-img-container-3" animate={{rotateZ: -6, x:0}}>
-          <img className="inner-img" src={img3}></img>
+      <motion.div id="project-img-container-3" animate={{rotateZ: -6, x:0}} whileHover={{rotateZ:0, scale:1.2, zIndex:10000000}}>
+      <motion.img className="inner-img" src={img3} ref={ref} variants={projectVariants} initial='init' animate={inView ? "animate" : "animate2"} ></motion.img>
         </motion.div>
-        <div className='project-text-div'>
+        <motion.div className='project-text-div' ref={ref} variants={projectVariants} initial='init' animate={inView ? "animate" : "animate2"}>
           <h5 id="h5-light">{ project }</h5>
-        </div>
-        <div className='project-desc-div'>
+        </motion.div>
+        <motion.div className='project-desc-div' ref={ref} variants={projectVariants} initial='init' animate={inView ? "animate" : "animate2"}>
           <h3 className='h3-light'>{ desc }</h3>
-        </div>
+        </motion.div>
       </div>
 
      </div>
@@ -546,9 +615,9 @@ function Page() {
       < About />
       < Projects />
       < Project project="boothlink" desc="An app that allows students to make reservations!" img1={BOOTHLINK_LOGIN} img2={BOOTHLINK_ORG_SELECTOR} img3={BOOTHLINK_HOME} id="boothlink" />
-      < Project project="boggle" desc="A game that draws inspiration from word factory!" img1="" img2="" img3="" id="boggle" />
-      < Project project="turo" desc="A mobile app to connect students and tutors!" img1="" img2="" img3="" id="turo" />
-      < Project project="i-ball" desc="A social platform to connect idols to their fans!" img1="" img2="" img3="" id="i-ball" />
+      < Project project="boggle" desc="A game that draws inspiration from word factory!" img1={BOGGLE_HOME} img2={BOGGLE_QUEUE} img3={BOGGLE_SETTINGS} id="boggle" />
+      < Project project="turo" desc="A mobile app to connect students and tutors!" img1={TURO_SIGNUP} img2={TURO_APPLICANT} img3={TURO_INFO} id="turo" />
+      < Project project="i-ball" desc="A social platform to connect idols to their fans!" img1={IBALL_HOME} img2={IBALL_LOGIN} img3={IBALL_MERCH} id="i-ball" />
       < Contact />
     </>
   )
