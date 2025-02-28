@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/portfolio/static/css/main.3e9769b0.css",
+    "main.js": "/portfolio/static/js/main.ce65460b.js",
+    "static/media/applicant-info.png": "/portfolio/static/media/applicant-info.865602cc3e1314c10503.png",
+    "static/media/applicant.png": "/portfolio/static/media/applicant.2f05056cf2bf9c9797f3.png",
+    "static/media/signup.png": "/portfolio/static/media/signup.8e58fbd9e9dcfb85a3db.png",
+    "static/media/certificates.zip": "/portfolio/static/media/certificates.2b5f06b23b88da34366d.zip",
+    "static/media/rithik.png": "/portfolio/static/media/rithik.4f9923128afd2965521a.png",
+    "static/media/merch.png": "/portfolio/static/media/merch.1de34b27724eb2218e77.png",
+    "static/media/home.png": "/portfolio/static/media/home.4fd8044fb12a288ff8ec.png",
+    "static/media/settings.png": "/portfolio/static/media/settings.e4a4aa24c2a99d9b55f7.png",
+    "static/media/org-selector.png": "/portfolio/static/media/org-selector.5fab709e103a9e7a0249.png",
+    "static/media/queue.png": "/portfolio/static/media/queue.d68370d2803246ce4eb6.png",
+    "static/media/login.png": "/portfolio/static/media/login.5e18b72e118d94180365.png",
+    "static/media/github-512.png": "/portfolio/static/media/github-512.414794a5d4f7b8b3aef0.png",
+    "index.html": "/portfolio/index.html",
+    "main.3e9769b0.css.map": "/portfolio/static/css/main.3e9769b0.css.map",
+    "main.ce65460b.js.map": "/portfolio/static/js/main.ce65460b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e9769b0.css",
+    "static/js/main.ce65460b.js"
+  ]
+}
